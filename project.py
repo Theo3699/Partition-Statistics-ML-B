@@ -113,6 +113,7 @@ def statisticsCount(path):
     plt.title(title, bbox={'facecolor': '0.8', 'pad': 5})
     plt.show()
 
+    
 def statisticsSize(way):
     countDirs = 0
     countFiles = 0
