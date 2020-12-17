@@ -28,6 +28,7 @@ def checkifPartition(path):
         return False
     return True
 
+
 def percentage(part, whole):
     return 100 * float(part)/float(whole)
 
@@ -35,6 +36,7 @@ def percentage(part, whole):
 def folders_files_count(path):
     countDirs = 0
     countFiles = 0
+    ceva=0
     myDict = dict()
     print(path)
     os.chdir(path)
@@ -50,12 +52,19 @@ def folders_files_count(path):
     myDict["files"]=countFiles
     myDict["folders"]=countDirs
     print("Sunt ", countFiles, " fisiere si ", countDirs, " foldere")
+    print(ceva)
     fig, ax = plt.subplots(1, 1)
     ax.bar(myDict.keys(), auxList)
     plt.ylabel("procentaje")
     plt.xlabel("extensii")
     title="Numarul de fisiere si directoare din "+path
     plt.title(title)
+    plt.show()
+
+    labels = 'files', 'folders'
+    counts = [countFiles, countDirs]
+    plt.pie(counts, labels=labels, autopct='%5.1f%%', shadow=True, startangle=15)
+    plt.title(title, bbox={'facecolor': '0.8', 'pad': 5})
     plt.show()
 
 
@@ -92,12 +101,17 @@ def statisticsCount(path):
         percs.append(sortedDict[keys])
     fig,ax=plt.subplots(1, 1)
     ax.bar(sortedDict.keys(), percs)
+    print(type(sortedDict.keys()))
     plt.ylabel("procentaje")
     plt.xlabel("extensii")
     title = "Procentajul extensiilor din " + path
     plt.title(title)
     plt.show()
 
+    #explode=(0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.8, 1.6)
+    plt.pie(percs, labels=sortedDict, autopct='%5.1f%%', shadow=True, startangle=15)#explode=explode
+    plt.title(title, bbox={'facecolor': '0.8', 'pad': 5})
+    plt.show()
 
 def statisticsSize(way):
     countDirs = 0
@@ -140,6 +154,10 @@ def statisticsSize(way):
     plt.xlabel("extensii")
     title="Procentajele de bytes din "+way
     plt.title(title)
+    plt.show()
+
+    plt.pie(percs, labels=sortedDict, autopct='%5.1f%%', shadow=True, startangle=15)
+    plt.title(title, bbox={'facecolor': '0.8', 'pad': 5})
     plt.show()
 
 
